@@ -1,4 +1,5 @@
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaUnlockAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const SignUpPage = () => {
@@ -14,6 +15,21 @@ const SignUpPage = () => {
             <FaGithub className="w-5 h-5" />
             Sign up with Github
           </button>
+
+          <p className="text-gray-300">
+            By signing up, you will unlock all the features of the app.
+            <span>
+              <FaUnlockAlt className="w-4 h-4 inline mx-2" />
+            </span>
+          </p>
+
+          <p className="text-sm font-light text-gray-500">
+            Already have an account?  {" "}
+            <Link to="/login" className="font-medium text-primary-600 hover:underline text-blue-600">
+              Login
+            </Link>
+          </p>
+
         </div>
       </div>
     </div>
