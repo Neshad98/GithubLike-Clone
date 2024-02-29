@@ -11,7 +11,7 @@ const HomePage = () => {
       <SortRepos />
       <div className=" flex gap-4 flex-col lg:flex-row justify-center items-start">
         <ProfileInfo />
-        {/* <Repos /> */}
+        <Repos />
       </div>
     </div>
   )
