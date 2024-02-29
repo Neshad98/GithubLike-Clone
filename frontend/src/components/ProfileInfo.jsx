@@ -1,4 +1,6 @@
 import { FaEye } from "react-icons/fa";
+import { TfiThought } from "react-icons/tfi";
+import { FaXTwitter } from "react-icons/fa6";
 
 
 
@@ -34,6 +36,37 @@ const ProfileInfo = () => {
             </a>
           </div>
         </div>
+        {userProfile?.bio ? (
+          <div className="flex items-center gap-2">
+            <TfiThought />
+            <p className="text-sm">{userProfile?.bio.substring(0, 60)}...</p>
+          </div>
+        ) : null}
+
+        {userProfile?.twitter_username ? (
+          <a
+            href={`https://twitter.com/${userProfile.twitter_username}`}
+            target='_blank'
+            rel='noreferrer'
+            className='flex items-center gap-2 hover:text-sky-500'
+          >
+            <FaXTwitter />
+            {userProfile?.twitter_username}
+          </a>
+        ) : null}
+
+        <div className='my-2'>
+          <p className='text-gray-600 font-bold text-sm'>Member since</p>
+          <p className=''>21 Sep, 2023</p>
+        </div>
+
+        {userProfile?.email && (
+          <div className='my-2'>
+            <p className='text-gray-600 font-bold text-sm'>Email address</p>
+            <p className=''>{userProfile.email}</p>
+          </div>
+        )}
+
       </div>
     </div>
   )
