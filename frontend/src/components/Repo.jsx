@@ -47,7 +47,9 @@ const Repo = ({ repo }) => {
       >
         Released on {formattedDate}
       </time>
-      <p className='mb-4 text-base font-normal text-gray-500'>Real Time Chat App | MERN && Socket.io && JWT</p>
+      <p className='mb-4 text-base font-normal text-gray-500'>
+        {repo.description ? repo.description.slice(0, 500) : "No description provided"}
+      </p>
       <img src={"/javascript.svg"} alt='Programming language icon' className='h-8' />
     </li>
   );
