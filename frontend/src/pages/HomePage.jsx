@@ -21,7 +21,7 @@ const HomePage = () => {
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
 
-      const repoRes = await fetch(userProfile.repos_url);
+      const repoRes = await fetch(userProfile?.repos_url);
       const repos = await repoRes.json();
       setRepos(repos);
       console.log("userProfile", userProfile)
@@ -57,7 +57,7 @@ const HomePage = () => {
       <SortRepos />
       <div className=" flex gap-4 flex-col lg:flex-row justify-center items-start">
         {userProfile && !loading && <ProfileInfo userProfile={userProfile} />}
-        {repos.length > 0 && !loading && <Repos repos={repos} />}
+        {!loading && <Repos repos={repos} />}
         {
           loading && <Spinner />
         }
