@@ -14,10 +14,10 @@ const HomePage = () => {
   const [sortType, setSortType] = useState("forks");
 
   // we use usecallback function to prevent infinite loop  in useeffect
-  const getUserProfileAndRepos = useCallback(async () => {
+  const getUserProfileAndRepos = useCallback(async (username = "Neshad98") => {
     setLoading(true);
     try {
-      const userRes = await fetch('https://api.github.com/users/neshad98');
+      const userRes = await fetch(`https://api.github.com/users/${username}`);
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
 
@@ -26,6 +26,7 @@ const HomePage = () => {
       setRepos(repos);
       console.log("userProfile", userProfile)
       console.log("repos", repos)
+      return { userProfile, repos }
     } catch (error) {
       toast.error(error.message)
     } finally {
@@ -37,12 +38,22 @@ const HomePage = () => {
 
   useEffect(() => {
     getUserProfileAndRepos();
-  }, [getUserProfileAndRepos])
+  }, [getUserProfileAndRepos]);
 
+  const onSearch = async (e, username) => {
+    e.preventDefault();
+    setLoading(true);
+    setRepos([]);
+    setUserProfile(null);
+    const { userProfile, repos } = await getUserProfileAndRepos(username);
+    setUserProfile(userProfile);
+    setRepos(repos);
+    setLoading(false);
+  }
 
   return (
     <div className="m-4 ">
-      <Search />
+      <Search onSearch={onSearch} />
       <SortRepos />
       <div className=" flex gap-4 flex-col lg:flex-row justify-center items-start">
         {userProfile && !loading && <ProfileInfo userProfile={userProfile} />}
