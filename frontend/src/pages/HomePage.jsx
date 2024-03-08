@@ -19,10 +19,10 @@ const HomePage = () => {
     setLoading(true);
     try {
       const userRes = await fetch(`https://api.github.com/users/${username}`, {
-        headers: {
-          // .env is not fckn secured. So use it carefully for production and maybe use it in db
-          authorization: `token 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`,
-        }
+        // headers: {
+
+        //   authorization: `token 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`,
+        // }
       });
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
