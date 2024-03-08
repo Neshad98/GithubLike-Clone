@@ -12,7 +12,7 @@ const ExplorePage = () => {
     setLoading(true);
     setRepos([]);
     try {
-      const res = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`);
+      const res = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=20`);
       const data = await res.json();
       setRepos(data.items);
       setSelectedLanguage(language);
@@ -42,7 +42,7 @@ const ExplorePage = () => {
             Repositories
           </h2>
         )}
-        {!loading && repos.length > 0 && <Repos repos={repos} />}
+        {!loading && repos.length > 0 && <Repos repos={repos} alwaysFullWidth />}
         {loading && <Spinner />}
       </div>
     </div>
