@@ -14,22 +14,30 @@ const HomePage = () => {
 
   const [sortType, setSortType] = useState("recent");
 
+
   const getUserProfileAndRepos = useCallback(async (username = "Neshad98") => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/profile/${username}`);
-      const { repos, userProfile } = await res.json();
-
-      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); //descending, recent first
-
-      setRepos(repos);
+      const userRes = await fetch(`https://api.github.com/users/${username}`, {
+        headers: {
+          // .env is not fckn secured. So use it carefully for production and maybe use it in db
+          authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
+        }
+      });
+      const userProfile = await userRes.json();
       setUserProfile(userProfile);
 
+      const repoRes = await fetch(userProfile.repos_url);
+      const repos = await repoRes.json();
+      setRepos(repos);
+      console.log("userProfile", userProfile);
+      console.log("repos", repos);
       return { userProfile, repos };
     } catch (error) {
       toast.error(error.message);
     } finally {
       setLoading(false);
+
     }
   }, []);
 
@@ -63,7 +71,7 @@ const HomePage = () => {
     setSortType(sortType);
     setRepos([...repos]);
 
-    // showing how to push to github
+
   };
 
   return (
