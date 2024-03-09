@@ -19,10 +19,10 @@ const HomePage = () => {
     setLoading(true);
 
     try {
-      const token = `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`;
+
       const userRes = await fetch(`https://api.github.com/users/${username}`, {
         // headers: {
-        //   authorization: `Bearer ${token}`,
+        //   authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
         // }
       });
       const userProfile = await userRes.json();
@@ -30,6 +30,7 @@ const HomePage = () => {
 
       const repoRes = await fetch(userProfile.repos_url);
       const repos = await repoRes.json();
+      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       setRepos(repos);
       console.log("userProfile", userProfile);
       console.log("repos", repos);

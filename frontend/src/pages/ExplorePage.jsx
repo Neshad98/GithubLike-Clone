@@ -15,10 +15,9 @@ const ExplorePage = () => {
     setRepos([]);
 
     try {
-      const token = `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`;
       const res = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=20`, {
         // headers: {
-        //   authorization: `Bearer ${token}`,
+        //   authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
         // }
       });
       const data = await res.json();
