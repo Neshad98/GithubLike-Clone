@@ -17,11 +17,12 @@ const HomePage = () => {
 
   const getUserProfileAndRepos = useCallback(async (username = "Neshad98") => {
     setLoading(true);
+
     try {
+      const token = `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`;
       const userRes = await fetch(`https://api.github.com/users/${username}`, {
         // headers: {
-
-        //   authorization: `token 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`,
+        //   authorization: `Bearer ${token}`,
         // }
       });
       const userProfile = await userRes.json();

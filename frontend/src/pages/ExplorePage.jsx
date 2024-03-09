@@ -8,11 +8,19 @@ const ExplorePage = () => {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState('');
+
+
   const exploreRepos = async (language) => {
     setLoading(true);
     setRepos([]);
+
     try {
-      const res = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=20`);
+      const token = `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`;
+      const res = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=20`, {
+        // headers: {
+        //   authorization: `Bearer ${token}`,
+        // }
+      });
       const data = await res.json();
       setRepos(data.items);
       setSelectedLanguage(language);
