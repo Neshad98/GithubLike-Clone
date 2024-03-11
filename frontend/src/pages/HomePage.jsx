@@ -25,6 +25,7 @@ const HomePage = () => {
 
       repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       setRepos(repos);
+      setUserProfile(userProfile);
       console.log("userProfile", userProfile);
       console.log("repos", repos);
       return { userProfile, repos };
