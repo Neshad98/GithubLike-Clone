@@ -1,9 +1,10 @@
 import express from "express";
+import { getUserProfileAndRepos } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-router.get("/profile/:username", (req, res) => {
-  res.send("User profile is ready");
-})
+router.get("/profile/:username", getUserProfileAndRepos);
+//todo => get likes 
+//todo => post like a profile 
 
 export default router;
