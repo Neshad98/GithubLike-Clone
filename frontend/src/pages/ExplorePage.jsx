@@ -38,7 +38,7 @@ const ExplorePage = () => {
           <img src='/python.svg' alt='Python logo' className='h-11 sm:h-20 cursor-pointer' onClick={() => exploreRepos('python')} />
           <img src='/java.svg' alt='Java logo' className='h-11 sm:h-20 cursor-pointer' onClick={() => exploreRepos('java')} />
         </div>
-        {repos.length > 0 && (
+        {repos?.length > 0 && (
           <h2 className="text-lg font-semibold text-center my-4">
             <span className="bg-blue-100 text-blue-800 font-medium me-2 px-2.5 py-0.5 rounded-full">
               {selectedLanguage.toUpperCase()}{" "}
@@ -46,7 +46,7 @@ const ExplorePage = () => {
             Repositories
           </h2>
         )}
-        {!loading && repos.length > 0 && <Repos repos={repos} alwaysFullWidth />}
+        {!loading && repos?.length > 0 && <Repos repos={repos} alwaysFullWidth />}
         {loading && <Spinner />}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { TfiThought } from "react-icons/tfi";
 import { FaXTwitter } from "react-icons/fa6";
 import { RiGitRepositoryFill, RiUserFollowFill, RiUserFollowLine } from "react-icons/ri";
 import { formatMemberSince } from "../utils/functions";
+import LikeProfile from "./LikeProfile";
 
 
 
@@ -30,6 +31,7 @@ const ProfileInfo = ({ userProfile }) => {
             <img src={userProfile?.avatar_url} className="rounded-md w-24 h-24 mb-2" alt="" />
           </a>
           <div className="flex gap-2 items-center flex-col">
+            <LikeProfile userProfile={userProfile} />
             <a href={userProfile?.html_url}
               target="_blank"
               rel="noreferrer"
