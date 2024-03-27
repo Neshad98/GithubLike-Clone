@@ -6,7 +6,7 @@ import ExplorePage from "./pages/ExplorePage"
 import LikesPage from "./pages/LikesPage"
 import Sidebar from "./components/Sidebar"
 import { Toaster } from "react-hot-toast";
-import { useAuthContext } from "./context/AuthContext"
+import { useAuthContext } from "./context/AuthContext";
 
 function App() {
 
